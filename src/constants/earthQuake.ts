@@ -1,4 +1,17 @@
-export const EARTHQUAKE_TIME = {
+interface EarthquakeData {
+  PAST_HOUR: Data
+  PAST_DAY: Data
+  WEEK: Data
+  MONTH: Data
+}
+interface Data {
+  ALL: string
+  MAGNITUDE_1: string
+  MAGNITUDE_2: string
+  MAGNITUDE_4: string
+}
+
+export const EARTHQUAKE_TIME: EarthquakeData = {
   PAST_HOUR: {
     ALL: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson',
     MAGNITUDE_1:
