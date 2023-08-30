@@ -1,34 +1,60 @@
-import { Layer, Map, MapRef, Source } from 'react-map-gl'
-import { useRef } from 'react'
+import { useRef, useCallback, useState } from 'react'
+import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { FOG, INITIAL_VIEW, MAP_DARK } from './constants/map'
 import { pointLayer, pulsingDot } from './components/Layers'
-import SearchControl from './components/controls/SearchControl'
 import { EARTHQUAKE_TIME } from './constants/earthQuake'
+import SearchControl from './components/controls/SearchControl'
+import { HoverInfo } from './components/HoverInfo'
+import { HovInfo } from './interface/map'
+import { Filter } from './components/Filter'
+import styles from './styles/main.module.css'
 
 export const App = () => {
   const mapRef = useRef<MapRef>()
-  return (
-    <Map
-      ref={mapRef as never}
-      mapboxAccessToken={import.meta.env.VITE_MAP}
-      initialViewState={INITIAL_VIEW}
-      mapStyle={MAP_DARK}
-      style={{ height: '100vh', width: '100%' }}
-      projection={{ name: 'globe' }}
-      fog={FOG}
-      onRender={() => {
-        mapRef.current!.addImage('pulsing-dot', pulsingDot)
-        mapRef.current!.triggerRepaint()
-      }}
-    >
-      <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.MAGNITUDE_1}>
-        <Layer {...pointLayer} id="wave"></Layer>
-      </Source>
+  const [hoverInfo, setHoverInfo] = useState<HovInfo>()
 
-      <SearchControl
-        position="top-right"
+  const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
+  const onClick = ({ lngLat, features }: Partial<MapLayerMouseEvent>) => {
+    features!.length > 0 && mapRef.current?.flyTo({ center: lngLat, zoom: 6 })
+  }
+  const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
+    const { x, y } = point
+    const hoveredFeature = features && features[0]
+    setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y })
+  }, [])
+
+  return (
+    <>
+      <Map
+        ref={mapRef as never}
+        onLoad={() => mapRef.current!.addImage('pulsing-dot', pulsingDot)}
+        onRender={() => mapRef.current!.triggerRepaint()}
         mapboxAccessToken={import.meta.env.VITE_MAP}
-      />
-    </Map>
+        style={{ height: '100vh', width: '100%' }}
+        initialViewState={INITIAL_VIEW}
+        interactiveLayerIds={['wave']}
+        projection={{ name: 'globe' }}
+        mapStyle={MAP_DARK}
+        onMouseMove={onHover}
+        onClick={onClick}
+        fog={FOG}
+      >
+        <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.ALL.VALUE}>
+          <Layer {...pointLayer} id="wave"></Layer>
+        </Source>
+        {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
+        <SearchControl
+          position="top-right"
+          marker={false}
+          mapboxAccessToken={import.meta.env.VITE_MAP}
+        />
+      </Map>
+      <img
+        src="/images/reset.png"
+        className={styles.reset}
+        onClick={handleResetZoom}
+      ></img>
+      <Filter></Filter>
+    </>
   )
 }
