@@ -88,7 +88,7 @@ export const pulsingDot = {
     const t = (performance.now() % duration) / duration
 
     const radius = (size / 6) * 0.2
-    const outerRadius = (size / 3) * 0.7 * t + radius
+    const outerRadius = (size / 6) * 0.7 * t + radius
 
     // Draw the outer circle.
     context.clearRect(0, 0, this.width, this.height)

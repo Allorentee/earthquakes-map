@@ -1,7 +1,7 @@
 import { useRef, useCallback, useState } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { FOG, INITIAL_VIEW, MAP_DARK } from './constants/map'
-import { pointLayer, pulsingDot } from './components/Layers'
+import { heatmapLayer, pointLayer, pulsingDot } from './components/Layers'
 import { EARTHQUAKE_TIME } from './constants/earthQuake'
 import SearchControl from './components/controls/SearchControl'
 import { HoverInfo } from './components/HoverInfo'
@@ -41,6 +41,9 @@ export const App = () => {
       >
         <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.ALL.VALUE}>
           <Layer {...pointLayer} id="wave"></Layer>
+        </Source>
+        <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.ALL.VALUE}>
+          <Layer {...heatmapLayer} id="wave"></Layer>
         </Source>
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
         <SearchControl

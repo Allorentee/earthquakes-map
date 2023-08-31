@@ -8,8 +8,14 @@ body {
   position: relative;
   overflow: hidden;
 }
+input {
+  color: #f3f3f3 !important;
+}
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
   background-color: #333;
   color: #f3f3f3;
+}
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
+  background-color: #333;
 }

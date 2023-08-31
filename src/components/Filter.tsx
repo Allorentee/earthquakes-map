@@ -8,7 +8,9 @@ export const Filter = () => {
         <label>
           <select>
             {FILTER_OPTIONS.map((opt: string) => (
-              <option>{opt}</option>
+              <>
+                <option>{opt}</option>
+              </>
             ))}
           </select>
         </label>

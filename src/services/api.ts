@@ -1,3 +1,5 @@
 export const detailUrlService = async (url: string) => {
-  return fetch(url).then((res) => res.json())
+  const result = await fetch(url)
+  const data = result.json()
+  return data
 }
