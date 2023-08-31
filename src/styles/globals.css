@@ -12,10 +12,20 @@ input {
   color: #f3f3f3 !important;
 }
 
-.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+select {
+  padding: 6px 64px;
+  border-radius: 5px;
+}
+
+option {
+  margin-top: 10px !important;
+  margin-bottom: 10px;
+}
+
+/* .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
   background-color: #333;
   color: #f3f3f3;
 }
 .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
   background-color: #333;
-}
+} */

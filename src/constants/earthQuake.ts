@@ -89,4 +89,29 @@ export const EARTHQUAKE_TIME = {
   }
 }
 
-export const FILTER_OPTIONS = ['Últimas Horas', 'Última semana', 'Último mes']
+export const EARTHQUAKE_TIME_FILTER = [
+  {
+    id: 1,
+    LABEL: 'Ultimas Horas',
+    VALUE:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
+  },
+  {
+    id: 2,
+    LABEL: 'Últimos dias',
+    VALUE:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
+  },
+  {
+    id: 3,
+    LABEL: 'Última semana',
+    VALUE:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
+  },
+  {
+    id: 4,
+    LABEL: 'Último mes',
+    VALUE:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
+  }
+]
