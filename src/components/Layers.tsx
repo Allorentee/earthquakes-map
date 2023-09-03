@@ -107,7 +107,7 @@ export const pulsingDot = {
     context.stroke()
 
     // Update this image's data with data from the canvas.
-    this.data = context.getImageData(2, 2, this.width, this.height).data
+    this.data = context.getImageData(2, 2, this.width, this.height).data as any
 
     // Continuously repaint the map, resulting
     // in the smooth animation of the dot.

@@ -6,9 +6,7 @@ import { EARTHQUAKE_TIME } from './constants/earthQuake'
 import SearchControl from './components/controls/SearchControl'
 import { HoverInfo } from './components/HoverInfo'
 import { HovInfo } from './interface/map'
-import { Filter } from './components/FilterTime'
 import styles from './styles/main.module.css'
-import { FilterMagnitude } from './components/FilterMagnitude'
 import { mappedEarthQuake } from './helpers/mappedData'
 
 export const App = () => {
@@ -68,8 +66,8 @@ export const App = () => {
         className={styles.reset}
         onClick={handleResetZoom}
       ></img>
-      <Filter></Filter>
-      <FilterMagnitude></FilterMagnitude>
+      {/* <Filter></Filter>
+      <FilterMagnitude></FilterMagnitude> */}
     </>
   )
 }

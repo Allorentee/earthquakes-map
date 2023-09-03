@@ -3,7 +3,7 @@ import { EARTHQUAKE_TIME_FILTER } from '../constants/earthQuake'
 import styles from '../styles/main.module.css'
 
 export const FilterMagnitude = () => {
-  const [filterMag, setFilterMag] = useState<string>('')
+  const [_filterMag, setFilterMag] = useState<string>('')
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilterMag(e.target.value)
