@@ -1,8 +1,8 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { FOG, INITIAL_VIEW, MAP_DARK } from './constants/map'
-import { heatmapLayer, pointLayer, pulsingDot } from './components/Layers'
-import { EARTHQUAKE_TIME } from './constants/earthQuake'
+import {  pointLayer, pulsingDot } from './components/Layers'
+// import { EARTHQUAKE_TIME } from './constants/earthQuake'
 import SearchControl from './components/controls/SearchControl'
 import { HoverInfo } from './components/HoverInfo'
 import { HovInfo } from './interface/map'
@@ -28,7 +28,7 @@ export const App = () => {
 
   useEffect(() => {
     mappedEarthQuake({
-      url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
+      url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
     }).then(setData)
   }, [])
 
@@ -51,9 +51,9 @@ export const App = () => {
         <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source>
-        <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.ALL.VALUE}>
+        {/* <Source type="geojson" data={EARTHQUAKE_TIME.PAST_DAY.ALL.VALUE}>
           <Layer {...heatmapLayer} id="wave"></Layer>
-        </Source>
+        </Source> */}
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
         <SearchControl
           position="top-right"
