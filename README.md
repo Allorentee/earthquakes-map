@@ -2,6 +2,10 @@
 
 "En el abrazo tumultuoso de la Tierra, los terremotos esculpen la narrativa de la naturaleza, recordándonos nuestra fragilidad en la danza eterna entre la fuerza y la vulnerabilidad."
 
+
+<img src='public/images/heatmap.png' alt='Mapa'/>
+<img src='public/images/wave.png' alt='Mapa'/>
+
 # TODO
 
 - [x] Representar el mapa como esfera
@@ -40,5 +44,3 @@ https://www.mapbox.com/
 npm run dev
 ```
 
-<img src='public/images/heatmap.png' alt='Mapa'/>
-<img src='public/images/wave.png' alt='Mapa'/>
