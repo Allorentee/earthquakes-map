@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from 'react'
+import { useRef, useCallback, useState } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { FOG, INITIAL_VIEW, MAP_DARK } from './constants/map'
 import { heatmapLayer, pulsingDot } from './components/Layers'
@@ -6,7 +6,6 @@ import SearchControl from './components/controls/SearchControl'
 import { HoverInfo } from './components/HoverInfo'
 import { HovInfo } from './interface/map'
 import styles from './styles/main.module.css'
-import { mappedEarthQuake } from './helpers/mappedData'
 import { EARTHQUAKE_TIME } from './constants/earthQuake'
 import { Filter } from './components/FilterTime'
 
@@ -24,14 +23,6 @@ export const App = () => {
     const { x, y } = point
     const hoveredFeature = features && features[0]
     setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y })
-  }, [])
-
-  const [data, setData] = useState<any>()
-
-  useEffect(() => {
-    mappedEarthQuake({
-      url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
-    }).then(setData)
   }, [])
 
   return (
