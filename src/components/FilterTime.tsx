@@ -1,29 +1,45 @@
-import { ChangeEvent, useState } from 'react'
-import { EARTHQUAKE_TIME_FILTER } from '../constants/earthQuake'
+import { ChangeEvent } from 'react'
+import {
+  EARTHQUAKE_MAG_FILTER,
+  EARTHQUAKE_TIME_FILTER
+} from '../constants/earthQuake'
 import styles from '../styles/main.module.css'
+import { useFilters } from '../hooks/useFilters'
 
 export const Filter = () => {
-  const [_filterTime, setFilterTime] = useState<string>('')
+  const { changeFilterTime } = useFilters()
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilterTime(e.target.value)
+    const time = e.target.value
+    changeFilterTime({ time })
   }
 
   return (
     <>
-      <form className={styles.filter}>
-        <label>
-          <select onChange={handleChange} className={styles.select}>
-            {EARTHQUAKE_TIME_FILTER.map((OPT) => (
+      <section>
+        <form className={styles.filter} role="search">
+          <label htmlFor="time"></label>
+          <select onChange={handleChange} className={styles.select} name="time">
+            {EARTHQUAKE_TIME_FILTER.map((OPT, index) => (
               <>
-                <option key={OPT.id} value={OPT.VALUE}>
+                <option key={index} value={OPT.VALUE}>
                   {OPT.LABEL}
                 </option>
               </>
             ))}
           </select>
-        </label>
-      </form>
+          <label htmlFor="mag"></label>
+          <select onChange={handleChange} name="mag">
+            {EARTHQUAKE_MAG_FILTER.map((OPT, index) => (
+              <>
+                <option key={index} value={OPT.VALUE}>
+                  {OPT.LABEL}
+                </option>
+              </>
+            ))}
+          </select>
+        </form>
+      </section>
     </>
   )
 }

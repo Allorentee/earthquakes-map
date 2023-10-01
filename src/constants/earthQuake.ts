@@ -1,117 +1,79 @@
 export const EARTHQUAKE_TIME = {
   PAST_HOUR: {
-    ALL: {
-      LABEL: 'Ultimas Horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
-    },
-    MAGNITUDE_1: {
-      LABEL: 'Ultimas Horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson'
-    },
-    MAGNITUDE_2: {
-      LABEL: 'Ultimas Horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson'
-    },
-    MAGNITUDE_4: {
-      LABEL: 'Ultimas Horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson'
-    }
+    ALL: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson',
+    MAGNITUDE_1:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson',
+
+    MAGNITUDE_2:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson',
+
+    MAGNITUDE_4:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson'
   },
   PAST_DAY: {
-    ALL: {
-      LABEL: 'Últimas 24 horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
-    },
-    MAGNITUDE_1: {
-      LABEL: 'Últimas 24 horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson'
-    },
-    MAGNITUDE_2: {
-      LABEL: 'Últimas 24 horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson'
-    },
-    MAGNITUDE_4: {
-      LABEL: 'Últimas 24 horas',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson'
-    }
+    ALL: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson',
+
+    MAGNITUDE_1:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson',
+    MAGNITUDE_2:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson',
+    MAGNITUDE_4:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson'
   },
   WEEK: {
-    ALL: {
-      LABEL: 'Última semana',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
-    },
-    MAGNITUDE_1: {
-      LABEL: 'Última semana',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson'
-    },
-    MAGNITUDE_2: {
-      LABEL: 'Última semana',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson'
-    },
-    MAGNITUDE_4: {
-      LABEL: 'Última semana',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson'
-    }
+    ALL: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson',
+    MAGNITUDE_1:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson',
+    MAGNITUDE_2:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson',
+    MAGNITUDE_4:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson'
   },
   MONTH: {
-    ALL: {
-      LABEL: 'Último mes',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
-    },
-    MAGNITUDE_1: {
-      LABEL: 'Último mes',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson'
-    },
-    MAGNITUDE_2: {
-      LABEL: 'Último mes',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson'
-    },
-    MAGNITUDE_4: {
-      LABEL: 'Último mes',
-      VALUE:
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson'
-    }
+    ALL: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson',
+    MAGNITUDE_1:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson',
+    MAGNITUDE_2:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson',
+    MAGNITUDE_4:
+      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson'
   }
 }
 
 export const EARTHQUAKE_TIME_FILTER = [
   {
-    id: 1,
     LABEL: 'Ultimas Horas',
-    VALUE:
-      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
+    VALUE: 'PAST_HOUR'
   },
   {
-    id: 2,
     LABEL: 'Últimos dias',
-    VALUE:
-      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
+    VALUE: 'PAST_DAYS'
   },
   {
-    id: 3,
     LABEL: 'Última semana',
-    VALUE:
-      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson'
+    VALUE: 'WEEK'
   },
   {
-    id: 4,
     LABEL: 'Último mes',
-    VALUE:
-      'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
+    VALUE: 'MONTH'
+  }
+]
+
+export const EARTHQUAKE_MAG_FILTER = [
+  {
+    LABEL: 'Todos',
+    VALUE: 'ALL'
+  },
+  {
+    LABEL: 'Magnitud 1',
+    VALUE: 'MAGNITUDE_1'
+  },
+  {
+    LABEL: 'Magnitud 2',
+    VALUE: 'MAGNITUDE_2'
+  },
+  {
+    LABEL: 'Magnitud 3',
+    VALUE: 'MAGNITUDE_3'
   }
 ]

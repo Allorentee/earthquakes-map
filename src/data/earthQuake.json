@@ -1,115 +1,35 @@
 {
   "earthQuakes": [
     {
-      "past_hour": {
-        "all": {
-          "label": "Ultimas Horas",
-          "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"
-        },
-        "magnitude": [
-          {
-            "MAGNITUDE_1": {
-              "label": "Ultimas Horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_2": {
-              "label": "Ultimas Horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_4": {
-              "label": "Ultimas Horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson"
-            }
-          }
-        ]
+      "PAST_HOUR": {
+        "ALL": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+        "MAGNITUDE_1": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson",
+        "MAGNITUDE_2": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson",
+        "MAGNITUDE_4": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_hour.geojson"
       }
     },
     {
-      "past_day": {
-        "all": {
-          "label": "Últimas 24 horas",
-          "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
-        },
-        "magnitude": [
-          {
-            "MAGNITUDE_1": {
-              "label": "Últimas 24 horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_2": {
-              "label": "Últimas 24 horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_4": {
-              "label": "Últimas 24 horas",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
-            }
-          }
-        ]
+      "PAST_DAY": {
+        "ALL": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+        "MAGNITUDE_1": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_day.geojson",
+        "MAGNITUDE_2": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
+        "MAGNITUDE_4": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
       }
     },
     {
-      "week": {
-        "all": {
-          "label": "Última semana",
-          "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
-        },
-        "magnitude": [
-          {
-            "MAGNITUDE_1": {
-              "label": "Última semana",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_2": {
-              "label": "Última semana",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_4": {
-              "label": "Última semana",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
-            }
-          }
-        ]
+      "WEEK": {
+        "ALL": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson",
+        "MAGNITUDE_1": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson",
+        "MAGNITUDE_2": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson",
+        "MAGNITUDE_4": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
       }
     },
     {
-      "month": {
-        "all": {
-          "label": "Último mes",
-          "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
-        },
-        "magnitude": [
-          {
-            "MAGNITUDE_1": {
-              "label": "Último mes",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_2": {
-              "label": "Último mes",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
-            }
-          },
-          {
-            "MAGNITUDE_4": {
-              "label": "Último mes",
-              "value": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson"
-            }
-          }
-        ]
+      "MONTH": {
+        "ALL": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+        "MAGNITUDE_1": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson",
+        "MAGNITUDE_2": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson",
+        "MAGNITUDE_4": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson"
       }
     }
   ]
