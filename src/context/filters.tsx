@@ -1,18 +1,12 @@
 import { createContext, ReactNode, useState } from 'react'
 import { EARTHQUAKE_TIME } from '../constants/earthQuake'
 
-interface StateContext {
-  filters: Filers
-  setFilters: any
-  earthQuakeData: any
-  setEarthQuakeData: any
-}
 export interface Filers {
   time: string
   magnitude: string
 }
 
-export const FiltersContext = createContext<StateContext | undefined>(undefined)
+export const FiltersContext = createContext<any>({})
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<Filers>({
