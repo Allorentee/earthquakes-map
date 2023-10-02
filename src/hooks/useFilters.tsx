@@ -1,15 +1,17 @@
-import { useContext } from 'react'
+import { useContext, ChangeEvent } from 'react'
 import { Filers, FiltersContext } from '../context/filters'
 
 export const useFilters = () => {
   const { filters, setFilters, earthQuakeData, setEarthQuakeData } =
     useContext(FiltersContext)
 
-  const changeFilterTime = ({ time }: { time: string }) => {
+  const changeFilterTime = (e: ChangeEvent<HTMLSelectElement>) => {
+    const time = e.target.value
     setFilters((prevState: Filers) => ({ ...prevState, time }))
   }
 
-  const changeFilterMagnitude = ({ magnitude }: { magnitude: string }) => {
+  const changeFilterMagnitude = (e: ChangeEvent<HTMLSelectElement>) => {
+    const magnitude = e.target.value
     setFilters((prevState: Filers) => ({ ...prevState, magnitude }))
   }
 
