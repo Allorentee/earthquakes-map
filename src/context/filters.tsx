@@ -1,23 +1,23 @@
 import { createContext, ReactNode, useState } from 'react'
 import { EARTHQUAKE_TIME } from '../constants/earthQuake'
 
-// interface StateContext {
-//   filters: Filers
-//   setFilters: React.Dispatch<React.SetStateAction<''>>
-//   earthQuakeData: FilterData
-//   setEarthQuakeData: React.Dispatch<React.SetStateAction<''>>
-// }
+interface StateContext {
+  filters: Filers
+  setFilters: any
+  earthQuakeData: any
+  setEarthQuakeData: any
+}
 export interface Filers {
   time: string
   magnitude: string
 }
 
-export const FiltersContext = createContext<any>({})
+export const FiltersContext = createContext<StateContext | undefined>(undefined)
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<Filers>({
-    time: 'PAST_HOUR',
-    magnitude: EARTHQUAKE_TIME.MONTH.MAGNITUDE_4
+    time: 'MONTH',
+    magnitude: 'ALL'
   })
 
   const [earthQuakeData, setEarthQuakeData] = useState(

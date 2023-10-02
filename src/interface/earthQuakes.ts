@@ -85,3 +85,30 @@ export interface Magnitude {
   MAGNITUDE_2?: All
   MAGNITUDE_4?: All
 }
+
+export interface EarthquakeData {
+  PAST_HOUR: {
+    ALL: string
+    MAGNITUDE_1: string
+    MAGNITUDE_2: string
+    MAGNITUDE_4: string
+  }
+  PAST_DAY: {
+    ALL: string
+    MAGNITUDE_1: string
+    MAGNITUDE_2: string
+    MAGNITUDE_4: string
+  }
+  WEEK: {
+    ALL: string
+    MAGNITUDE_1: string
+    MAGNITUDE_2: string
+    MAGNITUDE_4: string
+  }
+  MONTH: {
+    ALL: string
+    MAGNITUDE_1: string
+    MAGNITUDE_2: string
+    MAGNITUDE_4: string
+  }
+}
