@@ -1,0 +1,23 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+while read line; do
+    # Skip comments
+    if [ "${line:0:1}" == "#" ]; then
+        continue
+    fi
+
+    # Check if the commit message starts with "feat:" or "fix:"
+    if [[ ! "$line" =~ ^(feat:|fix:|add:|build:|docs:|refactor:|style:|test:).*$ ]]; then
+        echo -e "\033[0;31mEl mensaje del commit debe comenzar con 'feat:','fix:'add:,build:,docs:,refactor:,style:,test:."
+        exit 1
+    fi
+
+    # Check the length of the commit message
+    if [ ${#line} -ge 72 ] || [ ${#line} -le 10 ]; then
+        echo -e "\033[0;31mLa longitud del mensaje del commit debe estar entre 10 y 72 caracteres."
+        exit 1
+    fi
+done < "${1}"
+
+exit 0
