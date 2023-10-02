@@ -16,10 +16,7 @@ export const App = () => {
   const mapRef = useRef<MapRef>()
   const { filters } = useFilters()
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
-  const [data, setData] = useState<any>({
-    data: earthQuakesData[filters.time][filters.magnitude],
-    isLoading: false
-  })
+  const [data, setData] = useState<any>()
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
