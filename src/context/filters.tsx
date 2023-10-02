@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useState } from 'react'
-import { EARTHQUAKE_TIME } from '../constants/earthQuake'
 
 export interface Filers {
   time: string
@@ -14,14 +13,8 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     magnitude: 'ALL'
   })
 
-  const [earthQuakeData, setEarthQuakeData] = useState(
-    EARTHQUAKE_TIME.MONTH.ALL
-  )
-
   return (
-    <FiltersContext.Provider
-      value={{ earthQuakeData, setEarthQuakeData, filters, setFilters }}
-    >
+    <FiltersContext.Provider value={{ filters, setFilters }}>
       {children}
     </FiltersContext.Provider>
   )
