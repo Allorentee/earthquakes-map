@@ -1,5 +1,7 @@
 # Earthquake Map
 
+[Enlace a la app](earthquakes-map.vercel.app)
+
 "En el abrazo tumultuoso de la Tierra, los terremotos esculpen la narrativa de la naturaleza, recordándonos nuestra fragilidad en la danza eterna entre la fuerza y la vulnerabilidad."
 
 
@@ -43,4 +45,3 @@ https://www.mapbox.com/
 npm run dev
 ```
 
-.
