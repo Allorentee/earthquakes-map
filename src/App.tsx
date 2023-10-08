@@ -17,10 +17,11 @@ export const App = () => {
   const { filters } = useFilters()
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
   const [data, setData] = useState<any>()
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
-    const coord = JSON.parse(features![0].properties!.coordinates)
+    const coord = JSON.parse(features![0]!.properties!.coordinates)
     features!.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
   }
   const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
@@ -30,10 +31,13 @@ export const App = () => {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     mappedEarthQuake({
       url: earthQuakesData[filters.time][filters.magnitude]
-    }).then(setData)
+    }).then(res=>{setData(res); setIsLoading(false)})
   }, [earthQuakesData, filters])
+
+
 
   return (
     <>
@@ -54,9 +58,11 @@ export const App = () => {
         {/* <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source> */}
-        <Source type="geojson" data={data}>
-          <Layer {...heatmapLayer} id="wave"></Layer>
-        </Source>
+            {
+      isLoading ? <div className={styles.modal}><div className={styles.custom_loader}></div> </div>:<Source type="geojson" data={data}>
+      <Layer {...heatmapLayer} id="wave"></Layer>
+    </Source>}
+        
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
         <SearchControl
           position="top-right"
