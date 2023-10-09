@@ -4,12 +4,13 @@ import { FOG, INITIAL_VIEW, MAP_DARK } from './constants/map'
 import { heatmapLayer, pulsingDot } from './components/Layers'
 import { HoverInfo } from './components/HoverInfo'
 import { HovInfo } from './interface/map'
-import { Filter } from './components/FilterTime'
 import { useFilters } from './hooks/useFilters'
+import { Filter } from './components/FilterTime'
 import { mappedEarthQuake } from './helpers/mappedData'
 import earthQuakes from './data/earthQuake.json'
 import SearchControl from './components/controls/SearchControl'
 import styles from './styles/main.module.css'
+import { Spinner } from './components/Spinner'
 
 export const App = () => {
   const earthQuakesData: any = earthQuakes
@@ -21,8 +22,11 @@ export const App = () => {
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
-    const coord = JSON.parse(features![0]!.properties!.coordinates)
-    features!.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
+    if (features!.length > 0) {
+      const coord = JSON.parse(features![0]!.properties!.coordinates)
+      features!.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
+    }
+    return
   }
   const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
     const { x, y } = point
@@ -34,10 +38,11 @@ export const App = () => {
     setIsLoading(true)
     mappedEarthQuake({
       url: earthQuakesData[filters.time][filters.magnitude]
-    }).then(res=>{setData(res); setIsLoading(false)})
+    }).then((res) => {
+      setData(res)
+      setIsLoading(false)
+    })
   }, [earthQuakesData, filters])
-
-
 
   return (
     <>
@@ -58,11 +63,14 @@ export const App = () => {
         {/* <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source> */}
-            {
-      isLoading ? <div className={styles.modal}><div className={styles.custom_loader}></div> </div>:<Source type="geojson" data={data}>
-      <Layer {...heatmapLayer} id="wave"></Layer>
-    </Source>}
-        
+        {isLoading ? (
+          <Spinner></Spinner>
+        ) : (
+          <Source type="geojson" data={data}>
+            <Layer {...heatmapLayer} id="wave"></Layer>
+          </Source>
+        )}
+
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
         <SearchControl
           position="top-right"
