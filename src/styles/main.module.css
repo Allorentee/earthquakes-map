@@ -37,6 +37,11 @@
   }
 }
 
+.filterIcon__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .filter_modal {
   position: absolute;
   transform: '';
