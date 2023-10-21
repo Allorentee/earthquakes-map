@@ -37,19 +37,25 @@
   }
 }
 
+.filter_modal {
+  position: absolute;
+  transform: '';
+  top: 50%;
+  right: 50%;
+}
+
 /* Spinner */
 .modal {
-  position: 'absolute';
+  position: fixed; /* Cambiado a fixed para mantener el modal en la vista */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: transparent;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: '';
-  top: '50%';
-  right: '50%';
+  z-index: 999; /* Añadir z-index para asegurar que el modal esté en la parte superior */
 }
 .custom_loader {
   width: 50px;
