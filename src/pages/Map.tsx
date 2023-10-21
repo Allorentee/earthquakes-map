@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect } from 'react'
+import { useRef, useCallback, useState, useEffect, useContext } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { useFilters } from '../hooks/useFilters'
 import { HovInfo } from '../interface/map'
@@ -13,6 +13,8 @@ import { mappedEarthQuake } from '../helpers/mappedData'
 import earthQuakes from '../data/earthQuake.json'
 import styles from '../styles/main.module.css'
 import { FilterIcon } from '../components/Icons'
+import { FilterModal } from '../components/FilterModal'
+import { GlobalContext } from '../context/globals'
 
 export const MapComponent = () => {
   const earthQuakesData: any = earthQuakes
@@ -21,7 +23,9 @@ export const MapComponent = () => {
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
   const [data, setData] = useState<any>()
   const [isLoading, setIsLoading] = useState(true)
+  const { modal, toggleModal } = useContext(GlobalContext)
   const { windowWidth } = useResize()
+  console.log({ modal })
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
@@ -74,7 +78,7 @@ export const MapComponent = () => {
           </Source>
         )}
         {windowWidth < 637 ? (
-          <div className={styles.filterIcon__wrapper}>
+          <div className={styles.filterIcon__wrapper} onClick={toggleModal}>
             <FilterIcon></FilterIcon>
           </div>
         ) : (
@@ -88,6 +92,7 @@ export const MapComponent = () => {
           </div>
         )}
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
+        {modal && <FilterModal></FilterModal>}
       </Map>
       <img
         src="/images/reset.png"

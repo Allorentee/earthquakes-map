@@ -41,12 +41,19 @@
   position: absolute;
   top: 0;
   right: 0;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
 }
 .filter_modal {
-  position: absolute;
-  transform: '';
-  top: 50%;
-  right: 50%;
+  position: fixed; /* Cambiado a fixed para mantener el modal en la vista */
+  width: 70%;
+  height: 30rem;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 /* Spinner */
