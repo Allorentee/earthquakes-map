@@ -1,4 +1,4 @@
-import { MapComponent } from './pages/map'
+import { MapComponent } from './pages/Map'
 
 export const App = () => {
   return <MapComponent></MapComponent>
