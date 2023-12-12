@@ -1,4 +1,3 @@
-import styles from '../styles/main.module.css'
 import { useFilters } from '../hooks/useFilters'
 import {
   EARTHQUAKE_MAG_FILTER,
@@ -11,11 +10,14 @@ export const Filter = () => {
   return (
     <>
       <section>
-        <form className={styles.filter} role="search">
+        <form
+          className="absolute top-0 right-0 mt-12 mr-3 flex flex-col"
+          role="search"
+        >
           <label htmlFor="time"></label>
           <select
             onChange={changeFilterTime}
-            className={styles.select}
+            className="p-2 pr-16 pl-16 rounded-md"
             name="time"
           >
             {EARTHQUAKE_TIME_FILTER.map((OPT, index) => (
@@ -25,7 +27,11 @@ export const Filter = () => {
             ))}
           </select>
           <label htmlFor="mag"></label>
-          <select onChange={changeFilterMagnitude} name="mag">
+          <select
+            onChange={changeFilterMagnitude}
+            className="p-2 pr-16 pl-16 rounded-md"
+            name="mag"
+          >
             {EARTHQUAKE_MAG_FILTER.map((OPT, index) => (
               <option key={index} value={OPT.VALUE}>
                 {OPT.LABEL}

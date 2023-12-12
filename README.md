@@ -1,5 +1,7 @@
 # Earthquake Map
 
+[🚀 Enlace a la app 🚀](https://earthquakes-map.vercel.app)
+
 "En el abrazo tumultuoso de la Tierra, los terremotos esculpen la narrativa de la naturaleza, recordándonos nuestra fragilidad en la danza eterna entre la fuerza y la vulnerabilidad."
 
 
@@ -10,8 +12,10 @@
 - [x] Representar el mapa como esfera
 - [x] Visualizar puntos latentes en el mapa
 - [x] Buscador por ciudad municipio...
-- [ ] Filtrado de terremotos por mes semana dias
-- [ ] Muestra de informacion de los terremotos al hacer hover sobre ellos
+- [x] Filtrado de terremotos por mes semana dias
+- [x] Muestra de informacion de los terremotos al hacer hover sobre ellos
+- [ ] HomePage.
+- [ ] Mejoras de UI
 - [ ] Posibilidad de representar con mapas de calor o con puntos latentes.
 
 # Como levantar el proyecto
@@ -43,4 +47,3 @@ https://www.mapbox.com/
 npm run dev
 ```
 
-.
