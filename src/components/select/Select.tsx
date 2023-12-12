@@ -2,14 +2,9 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '../../utils/tailwindClass'
+import { Option } from './select.types'
 
-export interface Option {
-  id: string
-  label: string
-  value: string
-}
-
-export default function Select({
+export function Select({
   options,
   onChange,
   selected
@@ -18,11 +13,12 @@ export default function Select({
   onChange: any
   selected: Option
 }) {
+  console.log({ selected })
   return (
     <Listbox value={selected} onChange={onChange}>
       {({ open }) => (
         <>
-          <div className="relative mt-2">
+          <div className="relative mt-2 w-60">
             <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
               <span className="block truncate">{selected.label}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

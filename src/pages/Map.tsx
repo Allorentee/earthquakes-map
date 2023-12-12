@@ -42,7 +42,7 @@ export const MapComponent = () => {
   useEffect(() => {
     setIsLoading(true)
     mappedEarthQuake({
-      url: earthQuakesData[filters.time][filters.magnitude]
+      url: earthQuakesData[filters.time.value][filters.magnitude.value]
     }).then((res) => {
       setData(res)
       setIsLoading(false)
