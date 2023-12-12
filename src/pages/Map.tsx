@@ -11,7 +11,6 @@ import { Filter } from '../components/FilterTime'
 import { HoverInfo } from '../components/HoverInfo'
 import { mappedEarthQuake } from '../helpers/mappedData'
 import earthQuakes from '../data/earthQuake.json'
-import styles from '../styles/main.module.css'
 import { FilterIcon } from '../components/Icons'
 import { FilterModal } from '../components/FilterModal'
 import { GlobalContext } from '../context/globals'
@@ -25,7 +24,6 @@ export const MapComponent = () => {
   const [isLoading, setIsLoading] = useState(true)
   const { modal, toggleModal } = useContext(GlobalContext)
   const { windowWidth } = useResize()
-  console.log({ modal })
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
@@ -78,7 +76,10 @@ export const MapComponent = () => {
           </Source>
         )}
         {windowWidth < 637 ? (
-          <div className={styles.filterIcon__wrapper} onClick={toggleModal}>
+          <div
+            className="absolute top-0 right-0 w-8 h-8 cursor-pointer"
+            onClick={toggleModal}
+          >
             <FilterIcon></FilterIcon>
           </div>
         ) : (
@@ -96,7 +97,7 @@ export const MapComponent = () => {
       </Map>
       <img
         src="/images/reset.png"
-        className={styles.reset}
+        className="cursor-pointer"
         onClick={handleResetZoom}
       ></img>
     </>
