@@ -3,9 +3,10 @@ import {
   EARTHQUAKE_MAG_FILTER,
   EARTHQUAKE_TIME_FILTER
 } from '../constants/earthQuake'
+import Select from './select/select'
 
 export const Filter = () => {
-  const { changeFilterTime, changeFilterMagnitude } = useFilters()
+  const { changeFilterTime, changeFilterMagnitude, filters } = useFilters()
 
   return (
     <>
@@ -15,29 +16,17 @@ export const Filter = () => {
           role="search"
         >
           <label htmlFor="time"></label>
-          <select
+          <Select
+            options={EARTHQUAKE_TIME_FILTER}
             onChange={changeFilterTime}
-            className="p-2 pr-16 pl-16 rounded-md"
-            name="time"
-          >
-            {EARTHQUAKE_TIME_FILTER.map((OPT, index) => (
-              <option key={index} value={OPT.VALUE}>
-                {OPT.LABEL}
-              </option>
-            ))}
-          </select>
+            selected={EARTHQUAKE_TIME_FILTER[0]}
+          ></Select>
           <label htmlFor="mag"></label>
-          <select
+          <Select
             onChange={changeFilterMagnitude}
-            className="p-2 pr-16 pl-16 rounded-md"
-            name="mag"
-          >
-            {EARTHQUAKE_MAG_FILTER.map((OPT, index) => (
-              <option key={index} value={OPT.VALUE}>
-                {OPT.LABEL}
-              </option>
-            ))}
-          </select>
+            options={EARTHQUAKE_MAG_FILTER}
+            selected={EARTHQUAKE_TIME_FILTER[0]}
+          ></Select>
         </form>
       </section>
     </>

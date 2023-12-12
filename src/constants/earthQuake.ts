@@ -1,37 +1,45 @@
 export const EARTHQUAKE_TIME_FILTER = [
   {
-    LABEL: 'Ultimas Horas',
-    VALUE: 'PAST_HOUR'
+    id: crypto.randomUUID(),
+    label: 'Ultimas Horas',
+    value: 'PAST_HOUR'
   },
   {
-    LABEL: 'Últimos dias',
-    VALUE: 'PAST_DAY'
+    id: crypto.randomUUID(),
+    label: 'Últimos dias',
+    value: 'PAST_DAY'
   },
   {
-    LABEL: 'Última semana',
-    VALUE: 'WEEK'
+    id: crypto.randomUUID(),
+    label: 'Última semana',
+    value: 'WEEK'
   },
   {
-    LABEL: 'Último mes',
-    VALUE: 'MONTH'
+    id: crypto.randomUUID(),
+    label: 'Último mes',
+    value: 'MONTH'
   }
 ]
 
 export const EARTHQUAKE_MAG_FILTER = [
   {
-    LABEL: 'Todos',
-    VALUE: 'ALL'
+    id: crypto.randomUUID(),
+    label: 'Todos',
+    value: 'ALL'
   },
   {
-    LABEL: 'Magnitud 1',
-    VALUE: 'MAGNITUDE_1'
+    id: crypto.randomUUID(),
+    label: 'Magnitud 1',
+    value: 'MAGNITUDE_1'
   },
   {
-    LABEL: 'Magnitud 2',
-    VALUE: 'MAGNITUDE_2'
+    id: crypto.randomUUID(),
+    label: 'Magnitud 2',
+    value: 'MAGNITUDE_2'
   },
   {
-    LABEL: 'Magnitud 3',
-    VALUE: 'MAGNITUDE_3'
+    id: crypto.randomUUID(),
+    label: 'Magnitud 3',
+    value: 'MAGNITUDE_3'
   }
 ]
