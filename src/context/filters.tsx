@@ -9,7 +9,7 @@ export const FiltersContext = createContext<any>({})
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
   const [filters, setFilters] = useState<Filers>({
-    time: 'MONTH',
+    time: 'PAST_HOUR',
     magnitude: 'ALL'
   })
 
