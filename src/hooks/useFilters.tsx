@@ -1,17 +1,16 @@
-import { useContext, ChangeEvent } from 'react'
+import { useContext } from 'react'
 import { Filers, FiltersContext } from '../context/filters'
+import { Option } from '../components/select/select.types'
 
 export const useFilters = () => {
   const { filters, setFilters } = useContext(FiltersContext)
 
-  const changeFilterTime = (e: ChangeEvent<HTMLSelectElement>) => {
-    const time = e.target.value
-    setFilters((prevState: Filers) => ({ ...prevState, time }))
+  const changeFilterTime = (selected: Option) => {
+    setFilters((prevState: Filers) => ({ ...prevState, time: selected }))
   }
 
-  const changeFilterMagnitude = (e: ChangeEvent<HTMLSelectElement>) => {
-    const magnitude = e.target.value
-    setFilters((prevState: Filers) => ({ ...prevState, magnitude }))
+  const changeFilterMagnitude = (selected: Option) => {
+    setFilters((prevState: Filers) => ({ ...prevState, magnitude: selected }))
   }
 
   return {
