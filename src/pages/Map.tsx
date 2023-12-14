@@ -19,7 +19,6 @@ export const MapComponent = () => {
   const [data, setData] = useState<any>()
   const [isLoading, setIsLoading] = useState(true)
 
-  const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
     if (features === undefined) return
     if (features.length > 0) {
@@ -45,48 +44,41 @@ export const MapComponent = () => {
   }, [earthQuakesData, filters])
 
   return (
-    <>
-      <Map
-        ref={mapRef as never}
-        onLoad={() => mapRef.current!.addImage('pulsing-dot', pulsingDot)}
-        onRender={() => mapRef.current?.triggerRepaint()}
-        mapboxAccessToken={import.meta.env.VITE_MAP}
-        style={{ height: '100vh', width: '100%' }}
-        initialViewState={INITIAL_VIEW}
-        interactiveLayerIds={['wave']}
-        projection={{ name: 'globe' }}
-        mapStyle={MAP_DARK}
-        onMouseMove={onHover}
-        onClick={onClick}
-        fog={FOG}
-      >
-        {/* <Source type="geojson" data={data}>
+    <Map
+      ref={mapRef as never}
+      onLoad={() => mapRef.current!.addImage('pulsing-dot', pulsingDot)}
+      onRender={() => mapRef.current?.triggerRepaint()}
+      mapboxAccessToken={import.meta.env.VITE_MAP}
+      style={{ height: '100vh', width: '100%' }}
+      initialViewState={INITIAL_VIEW}
+      interactiveLayerIds={['wave']}
+      projection={{ name: 'globe' }}
+      mapStyle={MAP_DARK}
+      onMouseMove={onHover}
+      onClick={onClick}
+      fog={FOG}
+    >
+      {/* <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source> */}
-        {isLoading ? (
-          <Spinner></Spinner>
-        ) : (
-          <Source type="geojson" data={data}>
-            <Layer {...heatmapLayer} id="wave"></Layer>
-          </Source>
-        )}
+      {isLoading ? (
+        <Spinner></Spinner>
+      ) : (
+        <Source type="geojson" data={data}>
+          <Layer {...heatmapLayer} id="wave"></Layer>
+        </Source>
+      )}
 
-        <div>
-          <SearchControl
-            position="top-right"
-            marker={false}
-            mapboxAccessToken={import.meta.env.VITE_MAP}
-          />
-          <Filter></Filter>
-        </div>
+      <div>
+        <SearchControl
+          position="top-right"
+          marker={false}
+          mapboxAccessToken={import.meta.env.VITE_MAP}
+        />
+        <Filter></Filter>
+      </div>
 
-        {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
-        <img
-          src="/images/reset.png"
-          className="cursor-pointer bg-red-600"
-          onClick={handleResetZoom}
-        ></img>
-      </Map>
-    </>
+      {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
+    </Map>
   )
 }

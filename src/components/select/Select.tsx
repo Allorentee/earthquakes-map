@@ -8,11 +8,11 @@ export function Select({
   options,
   onChange,
   selected
-}: {
+}: Readonly<{
   options: Option[]
   onChange: any
   selected: Option
-}) {
+}>) {
   return (
     <Listbox value={selected} onChange={onChange}>
       {({ open }) => (
