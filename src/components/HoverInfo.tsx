@@ -5,7 +5,7 @@ export const HoverInfo = ({ hoverInfo }: { hoverInfo: HovInfo }) => {
 
   return (
     <div
-      className="absolute m-2 p-3 bg-slate-500 w-xs text-xs z-10 pointer-events-none rounded-md"
+      className="absolute m-2 p-2 bg-slate-300 text-black w-xs text-xs z-10 pointer-events-none rounded-md"
       style={{ left: hoverInfo.x, top: hoverInfo.y }}
     >
       <div className="text-lg">

@@ -1,8 +1,7 @@
-import { useRef, useCallback, useState, useEffect, useContext } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { useFilters } from '../hooks/useFilters'
 import { HovInfo } from '../interface/map'
-import { useResize } from '../hooks/useResize'
 import { FOG, INITIAL_VIEW, MAP_DARK } from '../constants/map'
 import { heatmapLayer, pulsingDot } from '../components/Layers'
 import { Spinner } from '../components/Spinner'
@@ -11,9 +10,6 @@ import { Filter } from '../components/FilterTime'
 import { HoverInfo } from '../components/HoverInfo'
 import { mappedEarthQuake } from '../helpers/mappedData'
 import earthQuakes from '../data/earthQuake.json'
-import { FilterIcon } from '../components/Icons'
-import { FilterModal } from '../components/FilterModal'
-import { GlobalContext } from '../context/globals'
 
 export const MapComponent = () => {
   const earthQuakesData: any = earthQuakes
@@ -22,20 +18,19 @@ export const MapComponent = () => {
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
   const [data, setData] = useState<any>()
   const [isLoading, setIsLoading] = useState(true)
-  const { modal, toggleModal } = useContext(GlobalContext)
-  const { windowWidth } = useResize()
 
   const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
-    if (features!.length > 0) {
-      const coord = JSON.parse(features![0]!.properties!.coordinates)
-      features!.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
+    if (features === undefined) return
+    if (features.length > 0) {
+      const coord = JSON.parse(features[0]!.properties!.coordinates)
+      features.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
     }
     return
   }
   const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
     const { x, y } = point
-    const hoveredFeature = features && features[0]
+    const hoveredFeature = features?.[0]
     setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y })
   }, [])
 
@@ -75,31 +70,23 @@ export const MapComponent = () => {
             <Layer {...heatmapLayer} id="wave"></Layer>
           </Source>
         )}
-        {windowWidth < 637 ? (
-          <div
-            className="absolute top-0 right-0 w-8 h-8 cursor-pointer"
-            onClick={toggleModal}
-          >
-            <FilterIcon></FilterIcon>
-          </div>
-        ) : (
-          <div>
-            <SearchControl
-              position="top-right"
-              marker={false}
-              mapboxAccessToken={import.meta.env.VITE_MAP}
-            />
-            <Filter></Filter>
-          </div>
-        )}
+
+        <div>
+          <SearchControl
+            position="top-right"
+            marker={false}
+            mapboxAccessToken={import.meta.env.VITE_MAP}
+          />
+          <Filter></Filter>
+        </div>
+
         {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
-        {modal && <FilterModal></FilterModal>}
+        <img
+          src="/images/reset.png"
+          className="cursor-pointer bg-red-600"
+          onClick={handleResetZoom}
+        ></img>
       </Map>
-      <img
-        src="/images/reset.png"
-        className="cursor-pointer"
-        onClick={handleResetZoom}
-      ></img>
     </>
   )
 }
