@@ -1,8 +1,7 @@
-import { useRef, useCallback, useState, useEffect, useContext } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 import { useFilters } from '../hooks/useFilters'
 import { HovInfo } from '../interface/map'
-import { useResize } from '../hooks/useResize'
 import { FOG, INITIAL_VIEW, MAP_DARK } from '../constants/map'
 import { heatmapLayer, pulsingDot } from '../components/Layers'
 import { Spinner } from '../components/Spinner'
@@ -11,9 +10,6 @@ import { Filter } from '../components/FilterTime'
 import { HoverInfo } from '../components/HoverInfo'
 import { mappedEarthQuake } from '../helpers/mappedData'
 import earthQuakes from '../data/earthQuake.json'
-import { FilterIcon } from '../components/Icons'
-import { FilterModal } from '../components/FilterModal'
-import { GlobalContext } from '../context/globals'
 
 export const MapComponent = () => {
   const earthQuakesData: any = earthQuakes
@@ -22,27 +18,25 @@ export const MapComponent = () => {
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
   const [data, setData] = useState<any>()
   const [isLoading, setIsLoading] = useState(true)
-  const { modal, toggleModal } = useContext(GlobalContext)
-  const { windowWidth } = useResize()
 
-  const handleResetZoom = () => mapRef.current?.flyTo(INITIAL_VIEW)
   const onClick = ({ features }: Partial<MapLayerMouseEvent>) => {
-    if (features!.length > 0) {
-      const coord = JSON.parse(features![0]!.properties!.coordinates)
-      features!.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
+    if (features === undefined) return
+    if (features.length > 0) {
+      const coord = JSON.parse(features[0]!.properties!.coordinates)
+      features.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
     }
     return
   }
   const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
     const { x, y } = point
-    const hoveredFeature = features && features[0]
+    const hoveredFeature = features?.[0]
     setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y })
   }, [])
 
   useEffect(() => {
     setIsLoading(true)
     mappedEarthQuake({
-      url: earthQuakesData[filters.time][filters.magnitude]
+      url: earthQuakesData[filters.time.value][filters.magnitude.value]
     }).then((res) => {
       setData(res)
       setIsLoading(false)
@@ -50,56 +44,41 @@ export const MapComponent = () => {
   }, [earthQuakesData, filters])
 
   return (
-    <>
-      <Map
-        ref={mapRef as never}
-        onLoad={() => mapRef.current!.addImage('pulsing-dot', pulsingDot)}
-        onRender={() => mapRef.current?.triggerRepaint()}
-        mapboxAccessToken={import.meta.env.VITE_MAP}
-        style={{ height: '100vh', width: '100%' }}
-        initialViewState={INITIAL_VIEW}
-        interactiveLayerIds={['wave']}
-        projection={{ name: 'globe' }}
-        mapStyle={MAP_DARK}
-        onMouseMove={onHover}
-        onClick={onClick}
-        fog={FOG}
-      >
-        {/* <Source type="geojson" data={data}>
+    <Map
+      ref={mapRef as never}
+      onLoad={() => mapRef.current!.addImage('pulsing-dot', pulsingDot)}
+      onRender={() => mapRef.current?.triggerRepaint()}
+      mapboxAccessToken={import.meta.env.VITE_MAP}
+      style={{ height: '100vh', width: '100%' }}
+      initialViewState={INITIAL_VIEW}
+      interactiveLayerIds={['wave']}
+      projection={{ name: 'globe' }}
+      mapStyle={MAP_DARK}
+      onMouseMove={onHover}
+      onClick={onClick}
+      fog={FOG}
+    >
+      {/* <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source> */}
-        {isLoading ? (
-          <Spinner></Spinner>
-        ) : (
-          <Source type="geojson" data={data}>
-            <Layer {...heatmapLayer} id="wave"></Layer>
-          </Source>
-        )}
-        {windowWidth < 637 ? (
-          <div
-            className="absolute top-0 right-0 w-8 h-8 cursor-pointer"
-            onClick={toggleModal}
-          >
-            <FilterIcon></FilterIcon>
-          </div>
-        ) : (
-          <div>
-            <SearchControl
-              position="top-right"
-              marker={false}
-              mapboxAccessToken={import.meta.env.VITE_MAP}
-            />
-            <Filter></Filter>
-          </div>
-        )}
-        {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
-        {modal && <FilterModal></FilterModal>}
-      </Map>
-      <img
-        src="/images/reset.png"
-        className="cursor-pointer"
-        onClick={handleResetZoom}
-      ></img>
-    </>
+      {isLoading ? (
+        <Spinner></Spinner>
+      ) : (
+        <Source type="geojson" data={data}>
+          <Layer {...heatmapLayer} id="wave"></Layer>
+        </Source>
+      )}
+
+      <div>
+        <SearchControl
+          position="top-right"
+          marker={false}
+          mapboxAccessToken={import.meta.env.VITE_MAP}
+        />
+        <Filter></Filter>
+      </div>
+
+      {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
+    </Map>
   )
 }

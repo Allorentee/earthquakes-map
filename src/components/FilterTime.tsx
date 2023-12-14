@@ -3,43 +3,28 @@ import {
   EARTHQUAKE_MAG_FILTER,
   EARTHQUAKE_TIME_FILTER
 } from '../constants/earthQuake'
+import { Select } from './select/Select'
 
 export const Filter = () => {
-  const { changeFilterTime, changeFilterMagnitude } = useFilters()
+  const { changeFilterTime, changeFilterMagnitude, filters } = useFilters()
 
   return (
-    <>
-      <section>
-        <form
-          className="absolute top-0 right-0 mt-12 mr-3 flex flex-col"
-          role="search"
-        >
-          <label htmlFor="time"></label>
-          <select
-            onChange={changeFilterTime}
-            className="p-2 pr-16 pl-16 rounded-md"
-            name="time"
-          >
-            {EARTHQUAKE_TIME_FILTER.map((OPT, index) => (
-              <option key={index} value={OPT.VALUE}>
-                {OPT.LABEL}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="mag"></label>
-          <select
-            onChange={changeFilterMagnitude}
-            className="p-2 pr-16 pl-16 rounded-md"
-            name="mag"
-          >
-            {EARTHQUAKE_MAG_FILTER.map((OPT, index) => (
-              <option key={index} value={OPT.VALUE}>
-                {OPT.LABEL}
-              </option>
-            ))}
-          </select>
-        </form>
-      </section>
-    </>
+    <section>
+      <form
+        className="absolute top-0 right-0 mt-12 mr-[0.60rem] flex flex-col"
+        role="search"
+      >
+        <Select
+          options={EARTHQUAKE_TIME_FILTER}
+          onChange={changeFilterTime}
+          selected={filters.time}
+        ></Select>
+        <Select
+          onChange={changeFilterMagnitude}
+          options={EARTHQUAKE_MAG_FILTER}
+          selected={filters.magnitude}
+        ></Select>
+      </form>
+    </section>
   )
 }

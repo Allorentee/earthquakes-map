@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useControl, Marker, ControlPosition } from 'react-map-gl'
 import MapboxGeocoder, { GeocoderOptions } from '@mapbox/mapbox-gl-geocoder'
+import { es } from '../../locales/locales'
 
 type GeocoderControlProps = Omit<
   GeocoderOptions,
@@ -57,62 +58,40 @@ export default function SearchControl(props: GeocoderControlProps) {
     }
   )
 
-  if ((geocoder as any).map) {
+  const updateGeocoderProperty = (property: any, value: any) => {
+    const getterMethod = `get${property
+      .charAt(0)
+      .toUpperCase()}${property.slice(1)}`
+    const setterMethod = `set${property
+      .charAt(0)
+      .toUpperCase()}${property.slice(1)}`
+
     if (
-      geocoder.getProximity() !== props.proximity &&
-      props.proximity !== undefined
+      (geocoder as any).map &&
+      (geocoder as any)[getterMethod]() !== value &&
+      value !== undefined
     ) {
-      geocoder.setProximity(props.proximity)
-    }
-    if (
-      geocoder.getRenderFunction() !== props.render &&
-      props.render !== undefined
-    ) {
-      geocoder.setRenderFunction(props.render)
-    }
-    if (
-      geocoder.getLanguage() !== props.language &&
-      props.language !== undefined
-    ) {
-      geocoder.setLanguage(props.language)
-    }
-    if (geocoder.getZoom() !== props.zoom && props.zoom !== undefined) {
-      geocoder.setZoom(props.zoom)
-    }
-    if (geocoder.getFlyTo() !== props.flyTo && props.flyTo !== undefined) {
-      geocoder.setFlyTo(props.flyTo)
-    }
-    if (
-      geocoder.getPlaceholder() !== props.placeholder &&
-      props.placeholder !== undefined
-    ) {
-      geocoder.setPlaceholder(props.placeholder)
-    }
-    if (
-      geocoder.getCountries() !== props.countries &&
-      props.countries !== undefined
-    ) {
-      geocoder.setCountries(props.countries)
-    }
-    if (geocoder.getTypes() !== props.types && props.types !== undefined) {
-      geocoder.setTypes(props.types)
-    }
-    if (
-      geocoder.getMinLength() !== props.minLength &&
-      props.minLength !== undefined
-    ) {
-      geocoder.setMinLength(props.minLength)
-    }
-    if (geocoder.getLimit() !== props.limit && props.limit !== undefined) {
-      geocoder.setLimit(props.limit)
-    }
-    if (geocoder.getFilter() !== props.filter && props.filter !== undefined) {
-      geocoder.setFilter(props.filter)
-    }
-    if (geocoder.getOrigin() !== props.origin && props.origin !== undefined) {
-      geocoder.setOrigin(props.origin)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      geocoder[setterMethod](value)
     }
   }
+
+  if ((geocoder as any).map) {
+    updateGeocoderProperty('Proximity', props.proximity)
+    updateGeocoderProperty('RenderFunction', props.render)
+    updateGeocoderProperty('Language', props.language)
+    updateGeocoderProperty('Zoom', props.zoom)
+    updateGeocoderProperty('FlyTo', props.flyTo)
+    updateGeocoderProperty('Placeholder', props.placeholder)
+    updateGeocoderProperty('Countries', props.countries)
+    updateGeocoderProperty('Types', props.types)
+    updateGeocoderProperty('MinLength', props.minLength)
+    updateGeocoderProperty('Limit', props.limit)
+    updateGeocoderProperty('Filter', props.filter)
+    updateGeocoderProperty('Origin', props.origin)
+  }
+
   return marker
 }
 
@@ -124,5 +103,5 @@ SearchControl.defaultProps = {
   onResults: noop,
   onResult: noop,
   onError: noop,
-  placeholder: 'Buscar'
+  placeholder: es['common.search']
 }
