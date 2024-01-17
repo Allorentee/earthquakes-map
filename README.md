@@ -7,16 +7,6 @@
 
 <img src='public/images/heatmap.png' alt='Mapa'/>
 
-# TODO
-
-- [x] Representar el mapa como esfera
-- [x] Visualizar puntos latentes en el mapa
-- [x] Buscador por ciudad municipio...
-- [x] Filtrado de terremotos por mes semana dias
-- [x] Muestra de informacion de los terremotos al hacer hover sobre ellos
-- [ ] HomePage.
-- [ ] Mejoras de UI
-- [ ] Posibilidad de representar con mapas de calor o con puntos latentes.
 
 # Como levantar el proyecto
 
