@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
-import { useControl, Marker, ControlPosition } from 'react-map-gl'
+
 import MapboxGeocoder, { GeocoderOptions } from '@mapbox/mapbox-gl-geocoder'
+import { ControlPosition, Marker, useControl } from 'react-map-gl'
+
 import { es } from '../../locales/locales'
 
-type GeocoderControlProps = Omit<
-  GeocoderOptions,
-  'accessToken' | 'mapboxgl' | 'marker'
-> & {
+type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | 'marker'> & {
   mapboxAccessToken: string
   marker?: unknown
   position: ControlPosition
@@ -35,17 +34,9 @@ export default function SearchControl(props: GeocoderControlProps) {
 
         const { result } = evt
         const location =
-          result &&
-          (result.center ||
-            (result.geometry?.type === 'Point' && result.geometry.coordinates))
+          result && (result.center || (result.geometry?.type === 'Point' && result.geometry.coordinates))
         if (location && props.marker) {
-          setMarker(
-            <Marker
-              {...props.marker}
-              longitude={location[0]}
-              latitude={location[1]}
-            />
-          )
+          setMarker(<Marker {...props.marker} longitude={location[0]} latitude={location[1]} />)
         } else {
           setMarker(null)
         }
@@ -59,18 +50,10 @@ export default function SearchControl(props: GeocoderControlProps) {
   )
 
   const updateGeocoderProperty = (property: any, value: any) => {
-    const getterMethod = `get${property
-      .charAt(0)
-      .toUpperCase()}${property.slice(1)}`
-    const setterMethod = `set${property
-      .charAt(0)
-      .toUpperCase()}${property.slice(1)}`
+    const getterMethod = `get${property.charAt(0).toUpperCase()}${property.slice(1)}`
+    const setterMethod = `set${property.charAt(0).toUpperCase()}${property.slice(1)}`
 
-    if (
-      (geocoder as any).map &&
-      (geocoder as any)[getterMethod]() !== value &&
-      value !== undefined
-    ) {
+    if ((geocoder as any).map && (geocoder as any)[getterMethod]() !== value && value !== undefined) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       geocoder[setterMethod](value)

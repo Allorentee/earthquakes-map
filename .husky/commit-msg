@@ -8,7 +8,7 @@ while read line; do
     fi
 
     # Check if the commit message starts with "feat:" or "fix:"
-    if [[ ! "$line" =~ ^(feat:|fix:|add:|build:|docs:|refactor:|style:|test:).*$ ]]; then
+    if [[ ! "$line" =~ ^(feat:|fix:|add:|build:|docs:|refactor:|style:|test:|chore:).*$ ]]; then
         echo -e "\033[0;31mEl mensaje del commit debe comenzar con 'feat:','fix:'add:,build:,docs:,refactor:,style:,test:."
         exit 1
     fi

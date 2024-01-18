@@ -1,15 +1,17 @@
-import { useRef, useCallback, useState, useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
-import { useFilters } from '../hooks/useFilters'
-import { HovInfo } from '../interface/map'
-import { FOG, INITIAL_VIEW, MAP_DARK } from '../constants/map'
+
+import { Filter } from '../components/FilterTime'
+import { HoverInfo } from '../components/HoverInfo'
 import { heatmapLayer, pulsingDot } from '../components/Layers'
 import { Spinner } from '../components/Spinner'
 import SearchControl from '../components/controls/SearchControl'
-import { Filter } from '../components/FilterTime'
-import { HoverInfo } from '../components/HoverInfo'
-import { mappedEarthQuake } from '../helpers/mappedData'
+import { FOG, INITIAL_VIEW, MAP_DARK } from '../constants/map'
 import earthQuakes from '../data/earthQuake.json'
+import { mappedEarthQuake } from '../helpers/mappedData'
+import { useFilters } from '../hooks/useFilters'
+import { HovInfo } from '../interface/map'
 
 export const MapComponent = () => {
   const earthQuakesData: any = earthQuakes
@@ -37,7 +39,7 @@ export const MapComponent = () => {
     setIsLoading(true)
     mappedEarthQuake({
       url: earthQuakesData[filters.time.value][filters.magnitude.value]
-    }).then((res) => {
+    }).then(res => {
       setData(res)
       setIsLoading(false)
     })
@@ -56,8 +58,7 @@ export const MapComponent = () => {
       mapStyle={MAP_DARK}
       onMouseMove={onHover}
       onClick={onClick}
-      fog={FOG}
-    >
+      fog={FOG}>
       {/* <Source type="geojson" data={data}>
           <Layer {...pointLayer} id="wave"></Layer>
         </Source> */}
@@ -70,11 +71,7 @@ export const MapComponent = () => {
       )}
 
       <div>
-        <SearchControl
-          position="top-right"
-          marker={false}
-          mapboxAccessToken={import.meta.env.VITE_MAP}
-        />
+        <SearchControl position="top-right" marker={false} mapboxAccessToken={import.meta.env.VITE_MAP} />
         <Filter></Filter>
       </div>
 

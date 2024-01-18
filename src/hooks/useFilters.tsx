@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { Filers, FiltersContext } from '../context/filters'
+
 import { Option } from '../components/select/select.types'
+import { Filers, FiltersContext } from '../context/filters'
 
 export const useFilters = () => {
   const { filters, setFilters } = useContext(FiltersContext)

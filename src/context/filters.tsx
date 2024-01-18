@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState } from 'react'
+import { ReactNode, createContext, useState } from 'react'
+
 import { Option } from '../components/select/select.types'
 
 export interface Filers {
@@ -22,9 +23,5 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     }
   })
 
-  return (
-    <FiltersContext.Provider value={{ filters, setFilters }}>
-      {children}
-    </FiltersContext.Provider>
-  )
+  return <FiltersContext.Provider value={{ filters, setFilters }}>{children}</FiltersContext.Provider>
 }

@@ -10,7 +10,7 @@ export const useFetch = ({ service, params }: Props) => {
   const [isLoading, setIsloading] = useState(true)
 
   useEffect(() => {
-    service(params).then((res) => {
+    service(params).then(res => {
       setData(res)
       setIsloading(false)
     })
