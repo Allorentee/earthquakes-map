@@ -1,5 +1,8 @@
-export const MAP_DARK = 'mapbox://styles/mapbox/dark-v9'
-export const MAP_LIGHT = 'mapbox://styles/mapbox/light-v9'
+export const MAP_STYLE_OPTIONS = [
+  { id: crypto.randomUUID(), label: 'Modo noche', value: 'mapbox://styles/mapbox/dark-v9' },
+  { id: crypto.randomUUID(), label: 'Calles', value: 'mapbox://styles/mapbox/satellite-streets-v12' },
+  { id: crypto.randomUUID(), label: 'outdoor', value: 'mapbox://styles/mapbox/outdoors-v12' }
+]
 export const INITIAL_VIEW = {
   longitude: -4.454161090963652,
   latitude: 40.51369343176478,

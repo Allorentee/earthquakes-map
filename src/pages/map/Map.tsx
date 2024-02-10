@@ -2,21 +2,22 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 
-import { Filter } from '../components/FilterTime'
-import { HoverInfo } from '../components/HoverInfo'
-import { heatmapLayer, pulsingDot } from '../components/Layers'
-import { Spinner } from '../components/Spinner'
-import SearchControl from '../components/controls/SearchControl'
-import { FOG, INITIAL_VIEW, MAP_DARK } from '../constants/map'
-import earthQuakes from '../data/earthQuake.json'
-import { mappedEarthQuake } from '../helpers/mappedData'
-import { useFilters } from '../hooks/useFilters'
-import { HovInfo } from '../interface/map'
+import { Filter } from '../../components/FilterTime'
+import { HoverInfo } from '../../components/HoverInfo'
+import { heatmapLayer, pulsingDot } from '../../components/Layers'
+import { Spinner } from '../../components/Spinner'
+import SearchControl from '../../components/controls/SearchControl'
+import { MapTypeSelector } from '../../components/mapType/MapTypeSelector'
+import { FOG, INITIAL_VIEW } from '../../constants/map'
+import earthQuakes from '../../data/earthQuake.json'
+import { mappedEarthQuake } from '../../helpers/mappedData'
+import { useFilters } from '../../hooks/useFilters'
+import { HovInfo } from '../../interface/map'
 
-export const MapComponent = () => {
+export function MapComponent() {
   const earthQuakesData: any = earthQuakes
   const mapRef = useRef<MapRef>()
-  const { filters } = useFilters()
+  const { filters, mapStyle } = useFilters()
   const [hoverInfo, setHoverInfo] = useState<HovInfo>()
   const [data, setData] = useState<any>()
   const [isLoading, setIsLoading] = useState(true)
@@ -55,7 +56,7 @@ export const MapComponent = () => {
       initialViewState={INITIAL_VIEW}
       interactiveLayerIds={['wave']}
       projection={{ name: 'globe' }}
-      mapStyle={MAP_DARK}
+      mapStyle={mapStyle.value}
       onMouseMove={onHover}
       onClick={onClick}
       fog={FOG}>
@@ -70,10 +71,9 @@ export const MapComponent = () => {
         </Source>
       )}
 
-      <div>
-        <SearchControl position="top-right" marker={false} mapboxAccessToken={import.meta.env.VITE_MAP} />
-        <Filter></Filter>
-      </div>
+      <SearchControl position="top-right" marker={false} mapboxAccessToken={import.meta.env.VITE_MAP} />
+      <Filter />
+      <MapTypeSelector />
 
       {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
     </Map>

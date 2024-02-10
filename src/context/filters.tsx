@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from 'react'
 
 import { Option } from '../components/select/select.types'
+import { MAP_STYLE_OPTIONS } from '../constants/map'
 
 export interface Filers {
   time: Option
@@ -10,6 +11,7 @@ export interface Filers {
 export const FiltersContext = createContext<any>({})
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
+  const [mapStyle, setMapStyle] = useState(MAP_STYLE_OPTIONS[0])
   const [filters, setFilters] = useState<Filers>({
     time: {
       id: crypto.randomUUID(),
@@ -23,5 +25,9 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     }
   })
 
-  return <FiltersContext.Provider value={{ filters, setFilters }}>{children}</FiltersContext.Provider>
+  return (
+    <FiltersContext.Provider value={{ filters, setFilters, mapStyle, setMapStyle }}>
+      {children}
+    </FiltersContext.Provider>
+  )
 }
