@@ -1,5 +1,5 @@
 import { MAP_STYLE_OPTIONS } from '../../constants/map'
-import { useFilters } from '../../hooks/useFilters'
+import { useFilters } from '../../hooks/useOptions'
 import { Select } from '../select/Select'
 
 export function MapTypeSelector() {

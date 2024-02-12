@@ -11,7 +11,7 @@ import { MapTypeSelector } from '../../components/mapType/MapTypeSelector'
 import { FOG, INITIAL_VIEW } from '../../constants/map'
 import earthQuakes from '../../data/earthQuake.json'
 import { mappedEarthQuake } from '../../helpers/mappedData'
-import { useFilters } from '../../hooks/useFilters'
+import { useFilters } from '../../hooks/useOptions'
 import { HovInfo } from '../../interface/map'
 
 export function MapComponent() {

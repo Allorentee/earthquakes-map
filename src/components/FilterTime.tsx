@@ -1,5 +1,5 @@
 import { EARTHQUAKE_MAG_FILTER, EARTHQUAKE_TIME_FILTER } from '../constants/earthQuake'
-import { useFilters } from '../hooks/useFilters'
+import { useFilters } from '../hooks/useOptions'
 import { Select } from './select/Select'
 
 export const Filter = () => {
