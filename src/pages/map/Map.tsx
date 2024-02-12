@@ -2,12 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Layer, Map, MapLayerMouseEvent, MapRef, Source } from 'react-map-gl'
 
-import { Filter } from '../../components/FilterTime'
 import { HoverInfo } from '../../components/HoverInfo'
 import { heatmapLayer, pulsingDot } from '../../components/Layers'
 import { Spinner } from '../../components/Spinner'
-import SearchControl from '../../components/controls/SearchControl'
-import { MapTypeSelector } from '../../components/mapType/MapTypeSelector'
+import { Sidebar } from '../../components/sidebar/Sidebar'
 import { FOG, INITIAL_VIEW } from '../../constants/map'
 import earthQuakes from '../../data/earthQuake.json'
 import { mappedEarthQuake } from '../../helpers/mappedData'
@@ -28,7 +26,6 @@ export function MapComponent() {
       const coord = JSON.parse(features[0]!.properties!.coordinates)
       features.length > 0 && mapRef.current?.flyTo({ center: coord, zoom: 6 })
     }
-    return
   }
   const onHover = useCallback(({ features, point }: MapLayerMouseEvent) => {
     const { x, y } = point
@@ -71,10 +68,7 @@ export function MapComponent() {
         </Source>
       )}
 
-      <SearchControl position="top-right" marker={false} mapboxAccessToken={import.meta.env.VITE_MAP} />
-      <Filter />
-      <MapTypeSelector />
-
+      <Sidebar />
       {hoverInfo && <HoverInfo hoverInfo={hoverInfo}></HoverInfo>}
     </Map>
   )
