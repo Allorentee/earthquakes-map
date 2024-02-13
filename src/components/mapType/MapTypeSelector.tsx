@@ -1,9 +1,9 @@
 import { MAP_STYLE_OPTIONS } from '../../constants/map'
-import { useFilters } from '../../hooks/useOptions'
+import { useOptions } from '../../hooks/useOptions'
 import { Select } from '../select/Select'
 
 export function MapTypeSelector({ sidebarState }: Readonly<{ sidebarState: boolean }>) {
-  const { mapStyle, onChangeStyle } = useFilters()
+  const { mapStyle, onChangeStyle } = useOptions()
 
   return (
     <div className={`sidebarEffect ${!sidebarState && 'hidden'}`}>

@@ -53,4 +53,5 @@
 
 .mapboxgl-ctrl-geocoder--input {
   color: rgb(160, 157, 157);
+  height: auto;
 }

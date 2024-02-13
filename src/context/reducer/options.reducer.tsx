@@ -10,10 +10,19 @@ export function optionsReducer(state: OptionsState, action: OptionsActions): Opt
       return { ...state, filters: { ...state.filters, magnitude: payload } }
     case 'mapStyle':
       return { ...state, mapStyle: payload }
+    case 'toggleSidebar':
+      return { ...state, sidebarState: payload }
+    default:
+      return state
   }
 }
 
-export type OptionsActions = OptionsFilterDate | OptionsMapStyle | OptionsFiterMagnitude
+export type OptionsActions =
+  | OptionsFilterDate
+  | OptionsMapStyle
+  | OptionsFiterMagnitude
+  | OptionsTogggleSidebar
+
 export type OptionsFilterDate = {
   type: 'filter-date'
   payload: Option
@@ -25,5 +34,9 @@ export type OptionsFiterMagnitude = {
 export type OptionsMapStyle = {
   type: 'mapStyle'
   payload: Option
+}
+export type OptionsTogggleSidebar = {
+  type: 'toggleSidebar'
+  payload: boolean
 }
 

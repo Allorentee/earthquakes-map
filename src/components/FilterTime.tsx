@@ -1,9 +1,9 @@
 import { EARTHQUAKE_MAG_FILTER, EARTHQUAKE_TIME_FILTER } from '../constants/earthQuake'
-import { useFilters } from '../hooks/useOptions'
+import { useOptions } from '../hooks/useOptions'
 import { Select } from './select/Select'
 
 export const Filter = ({ sidebarState }: { sidebarState: boolean }) => {
-  const { changeFilterTime, changeFilterMagnitude, filters } = useFilters()
+  const { changeFilterTime, changeFilterMagnitude, filters } = useOptions()
 
   return (
     <section className={`sidebarEffect ${!sidebarState && 'hidden'}`}>

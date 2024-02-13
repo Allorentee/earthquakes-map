@@ -11,6 +11,7 @@ export interface Filers {
 export interface OptionsState {
   filters: Filers
   mapStyle: Option
+  sidebarState: boolean
   dispatch: (action: OptionsActions) => void
 }
 
@@ -27,6 +28,7 @@ const INITIAL_STATE: OptionsState = {
       value: 'ALL'
     }
   },
+  sidebarState: false,
   mapStyle: MAP_STYLE_OPTIONS[0],
   dispatch: function (): void {
     throw new Error('Function not implemented.')
