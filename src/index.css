@@ -17,6 +17,10 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 
+  .sidebarEffect {
+    transition: all 0.3s ease-in;
+  }
+
   .glass-intensity {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
@@ -24,4 +28,29 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
+}
+
+.mapboxgl-ctrl-top-right {
+  right: calc(50% - 10rem);
+  margin: 0px;
+}
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin-right: 0;
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 90rem;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.mapboxgl-ctrl-geocoder--button {
+  background-color: transparent;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  color: rgb(160, 157, 157);
 }
