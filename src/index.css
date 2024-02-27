@@ -36,6 +36,11 @@
 }
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
   margin-right: 0;
+  display: flex;
+  align-items: center;
+}
+.mapboxgl-ctrl-geocoder--icon-search {
+  top: 8px;
 }
 
 .mapboxgl-ctrl-geocoder {
@@ -54,4 +59,21 @@
 .mapboxgl-ctrl-geocoder--input {
   color: rgb(160, 157, 157);
   height: auto;
+}
+.mapboxgl-ctrl-geocoder--input:focus {
+  color: rgb(160, 157, 157);
+}
+@media screen and (max-width: 720px) {
+  .mapboxgl-ctrl-top-right {
+    /* Estilos específicos para dispositivos móviles */
+    /* Por ejemplo, puedes cambiar la posición o el tamaño */
+    right: 0;
+    width: 100%;
+  }
+  .mapboxgl-ctrl-geocoder--icon-close {
+    margin: 0;
+  }
+  .mapboxgl-ctrl-geocoder {
+    width: 100%;
+  }
 }

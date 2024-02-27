@@ -1,6 +1,7 @@
 export function ArrowIcon({ color, sidebarState }: Readonly<{ color: string; sidebarState: boolean }>) {
   return (
-    <div className={`sidebarEffect absolute right-3 top-2/4 ${sidebarState && 'hidden'}`}>
+    <div
+      className={`sidebarEffect absolute -rotate-90 pt-2 md:right-3 md:top-1/4 md:rotate-0 md:pt-0 ${sidebarState && 'hidden'}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
